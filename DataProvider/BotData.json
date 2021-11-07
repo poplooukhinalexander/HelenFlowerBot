@@ -1,0 +1,22 @@
+﻿{
+  "HelloText": "{0}, здравствуйте\\!\n\nВам пишет телеграм\\-бот Елены Поплоухиной\\. Я очень хочу принести пользу\\. Пожалуйста, выберите продукт для скачивания\\.",
+  "Products": 
+  [
+    {
+      "Name": "Шпаргалка для беременных",
+      "Link": "https://drive.google.com/drive/folders/1oMHWRBEa86XNnW9M6k0ZKMk7ioG1BgMt?usp=sharing"
+    },
+    {
+      "Name": "Аптечка для новорожденного",
+      "Link": "https://drive.google.com/drive/folders/1cwtv0spylpX5nJxvdh9JYleJrzhEYVjh?usp=sharing"
+    },
+    {
+      "Name": "Товары для новорожденных",
+      "Link": "https://www.lenatheflower.com/newborn"
+    },
+    {
+      "Name": "Instagram-блоги для мам",
+      "Link": "https://www.instagram.com/lenatheflower/guide/_/17872493435553673/"
+    }
+  ]
+}
