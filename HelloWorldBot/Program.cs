@@ -18,7 +18,8 @@ namespace HelloWorldBot
 
 			using var cts = new CancellationTokenSource();			
 			var dataProvider = new DefaultDataProvider();
-			var cmdParser = new CommandParser(botDataProvider: dataProvider.GetData);
+			var dataObject = await dataProvider.GetBotDataAsync(cts.Token);
+			var cmdParser = new CommandParser(dataObject);
 			myBot.StartReceiving(new DefaultUpdateHandler(cmdParser.HandleUpdateAsync, cmdParser.HandleErrorAsync));
 			Console.WriteLine($"Start listening for @{me.Username}");
 			Console.ReadLine();

@@ -1,6 +1,5 @@
 ﻿using Model;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -14,17 +13,12 @@ namespace CommandBotParser
 {
 	public class CommandParser
 	{				
-		private readonly Func<BotData> botDataProvider;		
+		private readonly BotData botDataObject;		
 
-		public CommandParser(Func<BotData> botDataProvider)
+		public CommandParser(BotData botDataObject)
 		{						
-			this.botDataProvider = botDataProvider ?? throw new ArgumentNullException(nameof(botDataProvider));			
-;		}
-
-		private IEnumerable<IEnumerable<InlineKeyboardButton>> GetProductUrlButtons()
-		{
-			return botDataProvider().Products.Select(_ => new[] { InlineKeyboardButton.WithUrl(_.Name, _.Link) });
-		}
+			this.botDataObject = botDataObject ?? throw new ArgumentNullException(nameof(botDataObject));			
+;		}		
 
 		public Task HandleErrorAsync(ITelegramBotClient botClient, Exception exception, CancellationToken cancellationToken)
 		{
@@ -62,12 +56,12 @@ namespace CommandBotParser
 		private async Task DefaultCommandHandlerAsync(long chatId, 			
 			string username,
 			ITelegramBotClient botClient, CancellationToken cancellationToken)
-		{
-			var productUrlBtns = GetProductUrlButtons();
+		{			
+			var productUrlBtns = botDataObject.Products.Select(_ => new[] { InlineKeyboardButton.WithUrl(_.Name, _.Link) });
 			var productMarkup = new InlineKeyboardMarkup(productUrlBtns);
 
 			await botClient.SendTextMessageAsync(chatId: chatId,
-				text: botDataProvider().GetHelloText(username),
+				text: botDataObject.GetHelloText(username),
 				parseMode: ParseMode.MarkdownV2,
 				disableNotification: true,							
 				replyMarkup: productMarkup,

@@ -30,16 +30,19 @@ namespace HelenFlowerBotApp
             try
 			{               
                 var botClient = new TelegramBotClient("2056284575:AAHqPrdkhCMtpMoK6m5KVtyKTrSGY-Mr8eI");
-                var dataProvider = new DefaultDataProvider();                
-                var cmdParser = new CommandParser(botDataProvider: dataProvider.GetData);                              
-                using var cts = new CancellationTokenSource();                
+                using var cts = new CancellationTokenSource();
+                var dataProvider = GetDataProvider();
+                var dataObject = await dataProvider.GetBotDataAsync(cts.Token);                
+                var cmdParser = new CommandParser(dataObject);                                                        
                 await cmdParser.HandleUpdateAsync(botClient, request, cts.Token);                
             }
             catch (Exception ex)
 			{
                 context.Logger.Log($"Error: {ex}");
 			}
-        }       
+        }
+
+        private static BaseDataProvider GetDataProvider() => new AwsS3DataProvider();
     }
 
     public record Casing(string Lower, string Upper);

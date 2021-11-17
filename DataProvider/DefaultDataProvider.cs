@@ -1,19 +1,17 @@
-﻿using Model;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace DataProvider
 {
-	public class DefaultDataProvider
-	{				
-		public BotData GetData()
+	public class DefaultDataProvider : BaseDataProvider
+	{						
+		protected override async Task<string> LoadBotDataAsync(CancellationToken cancellationToken)
 		{
 			var botDataFilePath = Path.Combine(AppContext.BaseDirectory, "BotData.json");
-			var botDataFileContent = File.ReadAllText(botDataFilePath);
-			var botData = JsonConvert.DeserializeObject<BotData>(botDataFileContent);
-			return botData;
-		}		
+			var botDataFileContent = await File.ReadAllTextAsync(botDataFilePath, cancellationToken);
+			return botDataFileContent;
+		}
 	}
 }
