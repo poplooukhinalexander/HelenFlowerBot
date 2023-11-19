@@ -1,7 +1,7 @@
 # Telegram Bot of Helen Poploukhina
 This bot (@lenatheflower_bot) helps subscribers to recieve promo-materials.
 
-Parts of project:
+Parts of the project:
 * CommandBotParser - Handler of bot's commands.
 * DataProvider - Promo-materials provider (used json).
 * Model - Model of data.
