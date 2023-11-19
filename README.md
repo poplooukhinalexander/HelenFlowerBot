@@ -1,9 +1,9 @@
-# Проект Бота Елены Поплоухиной
-Данный бот (@lenatheflower_bot) помогает подписчкам бота получать продукты и материалы, подготовленные Еленой Поплоухиной.
+# Telegram Bot of Helen Poploukhina
+This bot (@lenatheflower_bot) helps subscribers to recieve promo-materials.
 
-Проект бота состоить из проектов:
-* CommandBotParser - обработчик команд бота.
-* DataProvider - Поставщик данных о предлагаемых продуктах (данные пока берутся из вложенного в DataProvider json'а).
-* Model - модель данных для продуктов и hello текста.
-* HelenFlowerBotApp - AWS Lambda функция, которая отвечает на команды бота и отправляет в ответ продукты из DataProvider'a. AWS Lambda функция вызывается из AWS REST API Gateway. AWS REST API Gateway вызывается webhook telegram.
-* HelloWorldBot - тестовое приложение для работы с телеграм ботом.
+Parts of project:
+* CommandBotParser - Handler of bot's commands.
+* DataProvider - Promo-materials provider (used json).
+* Model - Model of data.
+* HelenFlowerBotApp - AWS Lambda function that handles bot's commands and returns data using DataProvider. AWS Lambda is called by AWS REST API Gateway. AWS REST API Gateway is called by Telegram's webhook.
+* HelloWorldBot - Demo application for using Telegram's API.
